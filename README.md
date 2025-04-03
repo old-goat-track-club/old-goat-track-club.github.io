@@ -1,4 +1,13 @@
-# React + TypeScript + Vite
+# old-goat-track-club.github.io
+
+Official website for OGTC
+
+To develop, clone repo.
+Then from repo root run `npm install`.
+For dev build `npm run dev`.
+
+
+## React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
