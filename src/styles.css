@@ -346,6 +346,19 @@ main {
   font-style: italic;
 }
 
+/* News Page Styles */
+.news-content {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.instagram-embed {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+
 /* Footer */
 footer {
   background-color: var(--primary-color);
