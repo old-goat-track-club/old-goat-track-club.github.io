@@ -105,6 +105,39 @@ main {
   width: 100%;
 }
 
+/* Type Selectors */
+.record-type-selector,
+.roster-type-selector {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.record-type-btn,
+.roster-type-btn {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--primary-color);
+  background: white;
+  color: var(--primary-color);
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.record-type-btn:hover,
+.roster-type-btn:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+.record-type-btn.active,
+.roster-type-btn.active {
+  background: var(--primary-color);
+  color: white;
+}
+
 /* Table Styles */
 .schedule-container {
   overflow-x: auto;

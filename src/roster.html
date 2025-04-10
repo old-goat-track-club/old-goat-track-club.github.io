@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Old Goat Track Club - Home Meet</title>
+    <title>Old Goat Track Club - Roster</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -26,34 +26,14 @@
     </nav>
     
     <main>
-      <h1 class="section-title">Old Goat Track Club 5k Invitational</h1>
-      
-      <section class="meet-info">
-        <h2>Race Information</h2>
-        <div class="meet-details">
-          <p><strong>Date:</strong> [TBD August 2025]</p>
-          <p><strong>Location:</strong> Waters Farm, Sutton, MA</p>
-          <p><strong>Schedule:</strong></p>
-          <ul>
-            <li>Women's 5k - 9:00 AM</li>
-            <li>Men's 5k - 9:45 AM</li>
-            <li>Awards Ceremony - 10:45 AM</li>
-          </ul>
-        </div>
-
-        <div class="registration-info">
-          <h2>Registration</h2>
-          <p>Registration will open in Spring 2025</p>
-          <p>Registration Link: [Coming Soon]</p>
-        </div>
-
-        <div class="course-map">
-          <h2>Course Map</h2>
-          <div class="map-placeholder">
-            <img src="assets/OGTCMAP1.png" alt="Course Map" style="max-width: 100%; height: auto;">
-          </div>
-        </div>
-      </section>
+      <h1 class="section-title">Team Roster</h1>
+      <div class="roster-type-selector">
+        <button class="roster-type-btn active" data-type="men">Men's Team</button>
+        <button class="roster-type-btn" data-type="women">Women's Team</button>
+      </div>
+      <div class="roster-container">
+        <table id="rosterTable" class="schedule-table"></table>
+      </div>
     </main>
 
     <footer>
@@ -67,5 +47,34 @@
         </a>
       </div>
     </footer>
+
+    <script type="module" src="js/loadCsv.js"></script>
+    <script type="module">
+      import { loadCsv, createRosterTable } from './js/loadCsv.js';
+
+      async function loadRosterType(type) {
+        const rosterData = await loadCsv(`data/${type}_roster.csv`);
+        document.getElementById('rosterTable').innerHTML = '';
+        createRosterTable('rosterTable', rosterData.headers, rosterData.data);
+      }
+
+      document.addEventListener('DOMContentLoaded', async () => {
+        // Load initial roster (Men's team)
+        await loadRosterType('men');
+
+        // Add click handlers for roster type buttons
+        const buttons = document.querySelectorAll('.roster-type-btn');
+        buttons.forEach(button => {
+          button.addEventListener('click', async () => {
+            // Update active button
+            buttons.forEach(b => b.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Load selected roster type
+            await loadRosterType(button.dataset.type);
+          });
+        });
+      });
+    </script>
   </body>
 </html>
