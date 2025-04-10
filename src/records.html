@@ -26,6 +26,12 @@
     
     <main>
       <h1 class="section-title">Club Records</h1>
+      <div class="record-type-selector">
+        <button class="record-type-btn active" data-type="xc">Cross Country</button>
+        <button class="record-type-btn" data-type="indoor">Indoor</button>
+        <button class="record-type-btn" data-type="outdoor">Outdoor</button>
+        <button class="record-type-btn" data-type="road">Road</button>
+      </div>
       <div class="records-container">
         <table id="recordsTable" class="schedule-table"></table>
       </div>
@@ -46,9 +52,29 @@
     <script type="module" src="js/loadCsv.js"></script>
     <script type="module">
       import { loadCsv, createRecordsTable } from './js/loadCsv.js';
-      document.addEventListener('DOMContentLoaded', async () => {
-        const recordsData = await loadCsv('data/club_records.csv');
+
+      async function loadRecordType(type) {
+        const recordsData = await loadCsv(`data/${type}_records.csv`);
+        document.getElementById('recordsTable').innerHTML = '';
         createRecordsTable('recordsTable', recordsData.headers, recordsData.data);
+      }
+
+      document.addEventListener('DOMContentLoaded', async () => {
+        // Load initial records (Cross Country)
+        await loadRecordType('xc');
+
+        // Add click handlers for record type buttons
+        const buttons = document.querySelectorAll('.record-type-btn');
+        buttons.forEach(button => {
+          button.addEventListener('click', async () => {
+            // Update active button
+            buttons.forEach(b => b.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Load selected record type
+            await loadRecordType(button.dataset.type);
+          });
+        });
       });
     </script>
   </body>
