@@ -138,6 +138,100 @@ main {
   color: white;
 }
 
+/* Roster Grid Styles */
+.roster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.athlete-card {
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.athlete-card-inner {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.athlete-card.flipped .athlete-card-inner {
+  transform: rotateY(180deg);
+}
+
+.athlete-card-front,
+.athlete-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+}
+
+.athlete-card-back {
+  transform: rotateY(180deg);
+}
+
+.athlete-photo {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+}
+
+.athlete-info,
+.athlete-details {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.athlete-info h3 {
+  margin: 0;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+.athlete-info p {
+  margin: 0.5rem 0 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.athlete-details {
+  text-align: left;
+}
+
+.athlete-details p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .roster-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .athlete-card-inner {
+    height: 350px;
+  }
+
+  .athlete-photo {
+    height: 280px;
+  }
+}
+
 /* Table Styles */
 .schedule-container {
   overflow-x: auto;
