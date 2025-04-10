@@ -146,6 +146,35 @@ main {
   font-size: 1.8rem;
 }
 
+/* Record Type Selector */
+.record-type-selector {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.record-type-btn {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--primary-color);
+  background: white;
+  color: var(--primary-color);
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.record-type-btn:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+.record-type-btn.active {
+  background: var(--primary-color);
+  color: white;
+}
+
 /* Records Table Styles */
 .records-table td {
   text-align: center;

@@ -23,6 +23,7 @@ export default defineConfig({
         results: 'src/results.html',
         records: 'src/records.html',
         meet: 'src/meet.html',
+        news: 'src/news.html'
       }
     }
   }
