@@ -24,7 +24,7 @@ body {
 nav {
   background-color: var(--primary-color);
   padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 nav ul {
@@ -116,14 +116,14 @@ main {
   border-collapse: collapse;
   margin: 1rem 0;
   background-color: var(--white);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .schedule-table th,
 .schedule-table td {
   padding: 1rem;
   text-align: center;
-  border-bottom: 1px solid rgba(30,144,255,0.2);
+  border-bottom: 1px solid rgba(30, 144, 255, 0.2);
 }
 
 .schedule-table th {
@@ -133,11 +133,11 @@ main {
 }
 
 .schedule-table tr:nth-child(even) {
-  background-color: rgba(30,144,255,0.05);
+  background-color: rgba(30, 144, 255, 0.05);
 }
 
 .schedule-table tr:hover {
-  background-color: rgba(30,144,255,0.1);
+  background-color: rgba(30, 144, 255, 0.1);
 }
 
 .section-title {
@@ -178,7 +178,7 @@ main {
 .records-note {
   margin: 2rem 0;
   padding: 1rem;
-  background-color: rgba(30,144,255,0.1);
+  background-color: rgba(30, 144, 255, 0.1);
   border-radius: 4px;
   text-align: center;
   font-style: italic;
@@ -228,12 +228,16 @@ main {
   padding: 2rem;
 }
 
-.meet-details, .registration-info, .course-map {
-  margin-bottom: 3rem;
-  padding: 1.5rem;
+.meet-details,
+.registration-info,
+.course-map {
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  padding: 1rem;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-wrap: wrap;
 }
 
 .meet-details ul {
@@ -246,35 +250,23 @@ main {
   color: #333;
 }
 
-.map-placeholder {
-  text-align: center;
-  background: #f5f5f5;
-  padding: 2rem;
-  border-radius: 8px;
-}
-
-.map-note {
-  margin-top: 1rem;
-  font-style: italic;
-  color: #666;
-}
-
 /* Responsive table */
 @media (max-width: 600px) {
+
   .schedule-table th,
   .schedule-table td {
     padding: 0.75rem;
     font-size: 0.9rem;
   }
-  
+
   .section-title {
     font-size: 1.5rem;
   }
-  
+
   .record-time {
     font-size: 1rem;
   }
-  
+
   .record-date {
     font-size: 0.8rem;
   }
@@ -306,7 +298,7 @@ main {
 .form-group textarea {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid rgba(30,144,255,0.3);
+  border: 1px solid rgba(30, 144, 255, 0.3);
   border-radius: 4px;
   font-size: 1rem;
 }
@@ -341,7 +333,7 @@ main {
 .results-note {
   margin: 2rem 0;
   padding: 1rem;
-  background-color: rgba(30,144,255,0.1);
+  background-color: rgba(30, 144, 255, 0.1);
   border-radius: 4px;
   font-style: italic;
 }
@@ -412,19 +404,19 @@ footer p {
   nav ul {
     gap: 1rem;
   }
-  
+
   .hero {
     padding: 3rem 1rem;
   }
-  
+
   .hero h1 {
     font-size: 2rem;
   }
-  
+
   .hero .tagline {
     font-size: 1.25rem;
   }
-  
+
   .hero .intro {
     font-size: 1rem;
   }
