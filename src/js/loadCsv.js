@@ -77,7 +77,7 @@ export function createRecordsTable(tableId, headers, data) {
   data.forEach(row => {
     if (row.length > 1) { // Skip empty rows
       const tr = document.createElement('tr');
-      
+
       // Men's record cell
       const tdMen = document.createElement('td');
       tdMen.innerHTML = `
@@ -85,12 +85,12 @@ export function createRecordsTable(tableId, headers, data) {
         <span class="record-time">${row[2]}</span>
         <span class="record-date">${row[3]}</span>
       `;
-      
+
       // Event name cell
       const tdEvent = document.createElement('td');
       tdEvent.className = 'event-name';
       tdEvent.textContent = row[0];
-      
+
       // Women's record cell
       const tdWomen = document.createElement('td');
       tdWomen.innerHTML = `
@@ -98,7 +98,7 @@ export function createRecordsTable(tableId, headers, data) {
         <span class="record-time">${row[5]}</span>
         <span class="record-date">${row[6]}</span>
       `;
-      
+
       tr.appendChild(tdMen);
       tr.appendChild(tdEvent);
       tr.appendChild(tdWomen);
