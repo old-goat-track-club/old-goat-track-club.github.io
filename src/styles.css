@@ -221,6 +221,39 @@ main {
   height: auto;
 }
 
+.home-grid-container {
+    display: grid;
+    gap: 1rem;
+    align-content: space-evenly;
+}
+
+.home-grid-container-fill {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 400px));
+}
+
+.home-grid-element {
+  margin: auto;
+  max-height: 300px;
+  width: auto;
+  height: 100%;
+  
+}
+
+
+/* 
+.home-images-container {
+  grid-auto-rows: auto;
+}
+
+.home-img {
+  display: block;
+  margin-top: 2rem auto;
+  margin-bottom: 2rem auto;
+  max-height: 300px;
+  width: auto;
+  height: 100%;
+} */
+
 /* Meet page styles */
 .meet-info {
   max-width: 800px;
