@@ -30,10 +30,12 @@
   </nav>
 
   <main>
-    <h1 class="section-title">Club Records</h1>
-    <div class="records-container">
-      <table id="recordsTable" class="schedule-table"></table>
+    <h1 class="section-title">Team Roster</h1>
+    <div class="roster-type-selector">
+      <button class="roster-type-btn active" data-type="men">Men's Team</button>
+      <button class="roster-type-btn" data-type="women">Women's Team</button>
     </div>
+    <div class="roster-grid" id="rosterGrid"></div>
   </main>
 
   <footer>
@@ -51,10 +53,77 @@
 
   <script type="module" src="js/loadCsv.js"></script>
   <script type="module">
-    import { loadCsv, createRecordsTable } from './js/loadCsv.js';
+    import { loadCsv } from './js/loadCsv.js';
+
+    function createRosterGrid(data) {
+      const grid = document.getElementById('rosterGrid');
+      grid.innerHTML = '';
+
+      data.forEach(athlete => {
+        if (athlete.length < 2) return; // Skip empty rows
+
+        const card = document.createElement('div');
+        card.className = 'athlete-card';
+
+        const inner = document.createElement('div');
+        inner.className = 'athlete-card-inner';
+
+        // Front of card
+        const front = document.createElement('div');
+        front.className = 'athlete-card-front';
+        front.innerHTML = `
+          <img src="${athlete[1]}" alt="${athlete[0]} front" class="athlete-photo">
+          <div class="athlete-info">
+            <h3>${athlete[0]}</h3>
+            <p>${athlete[5]}</p>
+          </div>
+        `;
+
+        // Back of card
+        const back = document.createElement('div');
+        back.className = 'athlete-card-back';
+        back.innerHTML = `
+          <img src="${athlete[2]}" alt="${athlete[0]} back" class="athlete-photo">
+          <div class="athlete-details">
+            <p><strong>Hometown:</strong> ${athlete[3]}</p>
+            <p><strong>College:</strong> ${athlete[4]}</p>
+            <p><strong>Events:</strong> ${athlete[5]}</p>
+          </div>
+        `;
+
+        inner.appendChild(front);
+        inner.appendChild(back);
+        card.appendChild(inner);
+        grid.appendChild(card);
+
+        // Add click handler for flip animation
+        card.addEventListener('click', () => {
+          card.classList.toggle('flipped');
+        });
+      });
+    }
+
+    async function loadRosterType(type) {
+      const rosterData = await loadCsv(`data/${type}_roster.csv`);
+      createRosterGrid(rosterData.data);
+    }
+
     document.addEventListener('DOMContentLoaded', async () => {
-      const recordsData = await loadCsv('data/club_records.csv');
-      createRecordsTable('recordsTable', recordsData.headers, recordsData.data);
+      // Load initial roster (Men's team)
+      await loadRosterType('men');
+
+      // Add click handlers for roster type buttons
+      const buttons = document.querySelectorAll('.roster-type-btn');
+      buttons.forEach(button => {
+        button.addEventListener('click', async () => {
+          // Update active button
+          buttons.forEach(b => b.classList.remove('active'));
+          button.classList.add('active');
+          
+          // Load selected roster type
+          await loadRosterType(button.dataset.type);
+        });
+      });
     });
   </script>
 </body>
