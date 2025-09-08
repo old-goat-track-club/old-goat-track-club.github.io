@@ -461,6 +461,43 @@ footer p {
   border-radius: 8px;
   overflow: hidden;
   background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.flip-indicator {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  z-index: 2;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.athlete-card:hover .flip-indicator {
+  opacity: 1;
+}
+
+.athlete-card-back .flip-indicator {
+  transform: scaleX(-1);
+  opacity: 0;
+  right: auto;
+  left: 10px;
+}
+
+.athlete-card.flipped .athlete-card-back .flip-indicator {
+  opacity: 0.7;
+}
+
+.athlete-card.flipped .athlete-card-front .flip-indicator {
+  opacity: 0;
 }
 
 .athlete-card-back {

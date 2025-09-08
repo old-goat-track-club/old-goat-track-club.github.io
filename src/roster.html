@@ -77,18 +77,27 @@
             <h3>${athlete[0]}</h3>
             <p>${athlete[6]}</p>
           </div>
+          <div class="flip-indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(0,0,0,0.5)">
+              <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+            </svg>
+          </div>
         `;
 
         // Back of card
         const back = document.createElement('div');
         back.className = 'athlete-card-back';
-        // <img src="${athlete[2]}" alt="${athlete[0]} back" class="athlete-photo">
         back.innerHTML = `
           <div class="athlete-details">
             <p><strong>Hometown:</strong> ${athlete[3]}</p>
             <p><strong>College:</strong> ${athlete[4]}</p>
             <p><strong>Events:</strong> ${athlete[5]}</p>
             <p><strong>PRs:</strong> ${athlete[7]}</p>
+          </div>
+          <div class="flip-indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(0,0,0,0.5)">
+              <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+            </svg>
           </div>
         `;
 
