@@ -235,21 +235,6 @@ main {
   object-fit:contain;
 }
 
-
-/* 
-.home-images-container {
-  grid-auto-rows: auto;
-}
-
-.home-img {
-  display: block;
-  margin-top: 2rem auto;
-  margin-bottom: 2rem auto;
-  max-height: 300px;
-  width: auto;
-  height: 100%;
-} */
-
 /* Meet page styles */
 .meet-info {
   max-width: 800px;
