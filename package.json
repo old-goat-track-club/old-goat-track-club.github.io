@@ -4,10 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "format": "prettier --write ."
   },
-  "dependencies": {},
   "devDependencies": {
+    "prettier": "^3.6.2",
     "vite": "^6.2.0"
   }
 }
