@@ -21,5 +21,4 @@ jobs:
         uses: creyD/prettier_action@v4.6
         with:
           # This part is also where you can pass other options, for example:
-          dry: True
-          prettier_options: --check **/*.*
+          prettier_options: --write **/*.{js,md,html,yaml,css}
