@@ -19,11 +19,6 @@ export function createTable(tableId, headers, data) {
   // Create header
   const thead = document.createElement("thead");
 
-
-
-
-
-  
   const headerRow = document.createElement("tr");
   headers.forEach((header) => {
     if (header !== "URL") {
