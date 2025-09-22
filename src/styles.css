@@ -7,11 +7,11 @@
 
 :root {
   --primary-color: #093268;
-  --white: #FFFFFF;
+  --white: #ffffff;
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   line-height: 1.6;
   margin: 0;
   padding: 0;
@@ -53,7 +53,7 @@ nav a {
 }
 
 nav a::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 2px;
@@ -252,7 +252,6 @@ main {
 
 /* Responsive table */
 @media (max-width: 600px) {
-
   .schedule-table th,
   .schedule-table td {
     padding: 0.75rem;
