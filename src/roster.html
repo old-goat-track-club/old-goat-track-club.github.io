@@ -136,8 +136,10 @@
 
       document.addEventListener("DOMContentLoaded", async () => {
         // Load initial roster (Men's team)
-        await loadRosterType("women");
-        await loadRosterType("men");
+        var women = loadRosterType("women");
+        var men = loadRosterType("men");
+        await women;
+        await men;
       });
     </script>
   </body>
