@@ -131,7 +131,10 @@
 
       async function loadRosterType(type) {
         const rosterData = await loadCsv(`data/${type}_roster.csv`);
-        createRosterGrid(rosterData.data);
+        const sortedData = [...rosterData.data].sort((a, b) =>
+          a[0].localeCompare(b[0]),
+        );
+        createRosterGrid(sortedData);
       }
 
       document.addEventListener("DOMContentLoaded", async () => {
