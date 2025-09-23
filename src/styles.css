@@ -142,7 +142,13 @@ main {
 
 .section-title {
   color: var(--primary-color);
-  margin: 2rem 0 1rem;
+  margin: 2rem 0 2rem;
+  font-size: 1.8rem;
+}
+
+.section-subtitle {
+  color: var(--primary-color);
+  padding-left: 2rem;
   font-size: 1.8rem;
 }
 

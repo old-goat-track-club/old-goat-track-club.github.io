@@ -40,13 +40,10 @@
 
     <main>
       <h1 class="section-title">Team Roster</h1>
-      <div class="roster-type-selector">
-        <button class="roster-type-btn active" data-type="men">
-          Men's Team
-        </button>
-        <button class="roster-type-btn" data-type="women">Women's Team</button>
-      </div>
-      <div class="roster-grid" id="rosterGrid"></div>
+      <h2 class="section-subtitle">Women's Team</h2>
+      <div class="roster-grid" id="rosterGrid-women"></div>
+      <h2 class="section-subtitle">Men's Team</h2>
+      <div class="roster-grid" id="rosterGrid-men"></div>
     </main>
 
     <footer>
@@ -71,8 +68,8 @@
     <script type="module">
       import { loadCsv } from "./js/loadCsv.js";
 
-      function createRosterGrid(data) {
-        const grid = document.getElementById("rosterGrid");
+      function createRosterGrid(data, type) {
+        const grid = document.getElementById(`rosterGrid-${type}`);
         grid.innerHTML = "";
 
         data.forEach((athlete) => {
@@ -134,25 +131,13 @@
         const sortedData = [...rosterData.data].sort((a, b) =>
           a[0].localeCompare(b[0]),
         );
-        createRosterGrid(sortedData);
+        createRosterGrid(sortedData, type);
       }
 
       document.addEventListener("DOMContentLoaded", async () => {
         // Load initial roster (Men's team)
+        await loadRosterType("women");
         await loadRosterType("men");
-
-        // Add click handlers for roster type buttons
-        const buttons = document.querySelectorAll(".roster-type-btn");
-        buttons.forEach((button) => {
-          button.addEventListener("click", async () => {
-            // Update active button
-            buttons.forEach((b) => b.classList.remove("active"));
-            button.classList.add("active");
-
-            // Load selected roster type
-            await loadRosterType(button.dataset.type);
-          });
-        });
       });
     </script>
   </body>
