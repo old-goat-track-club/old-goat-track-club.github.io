@@ -424,18 +424,20 @@ footer p {
 .home-grid-container {
   display: grid;
   gap: 1rem;
-  justify-content: space-evenly;
+  justify-content: center; /* space-evenly can sometimes cause weird gaps in Edge */
+  width: 100%;
 }
 
 .home-grid-container-fill {
-  /* grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); */
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr));
+  /* We use 280px or 300px as a base to ensure it fits on small mobile screens */
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
 }
 
 .home-grid-element {
-  margin: auto;
+  display: block;
   width: 100%;
+  height: auto;
   max-width: 400px;
-  height: 100%;
+  margin: 0 auto;
   object-fit: contain;
 }
