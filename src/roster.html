@@ -95,10 +95,14 @@
           inner.className = "athlete-card-inner";
 
           // Front of card
+          let photo_src = `assets/roster-photos/${team}/${athlete[FRONT_PHOTO_IDX]}`;
+          if (athlete[FRONT_PHOTO_IDX] === "") {
+            photo_src = "assets/roster-photos/default.svg";
+          }
           const front = document.createElement("div");
           front.className = "athlete-card-front";
           front.innerHTML = `
-          <img src="assets/roster-photos/${team}/${athlete[FRONT_PHOTO_IDX]}" alt="${athlete[NAME_IDX]} front" class="athlete-photo">
+          <img src="${photo_src}" alt="${athlete[NAME_IDX]} front" class="athlete-photo">
           <div class="athlete-info">
             <h3>${athlete[NAME_IDX]}</h3>
             <p>${athlete[NICKNAME_IDX]}</p>
