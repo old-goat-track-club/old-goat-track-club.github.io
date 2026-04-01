@@ -45,8 +45,6 @@
         <h2 class="section-title">Cross Country Records</h2>
         <table id="recordsTableXC" class="schedule-table"></table>
       </section>
-
-
     </main>
 
     <footer>
@@ -72,10 +70,18 @@
       import { loadCsv, createRecordsTable } from "./js/loadCsv.js";
       document.addEventListener("DOMContentLoaded", async () => {
         const recordsData = await loadCsv("data/club_records.csv");
-        createRecordsTable("recordsTable", recordsData.headers, recordsData.data);
-        
+        createRecordsTable(
+          "recordsTable",
+          recordsData.headers,
+          recordsData.data,
+        );
+
         const recordsDataXC = await loadCsv("data/club_records_xc.csv");
-        createRecordsTable("recordsTableXC", recordsDataXC.headers, recordsDataXC.data);
+        createRecordsTable(
+          "recordsTableXC",
+          recordsDataXC.headers,
+          recordsDataXC.data,
+        );
       });
     </script>
     <script async data-id="101492619" src="//static.getclicky.com/js"></script>
