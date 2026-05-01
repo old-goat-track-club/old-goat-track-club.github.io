@@ -46,3 +46,11 @@ Install `npm` and use `npm run <script>` where `<script>` is one of the scripts 
 `format` will run the formatter once
 
 `format-watch` will start the file watcher that runs the formatter 5 seconds after a file has been saved.
+
+### Live Server VS Code Plugin
+
+This is an option
+
+### Python one-liner
+
+python3 -m http.server 8001
