@@ -441,3 +441,38 @@ footer p {
   margin: 0 auto;
   object-fit: contain;
 }
+
+.grey-bar {
+  /* The bar will naturally match the width of its parent */
+  width: 100%;
+
+  /* Set your desired height */
+  height: 20px;
+
+  /* Light grey color */
+  background-color: #d3d3d3;
+
+  /* Ensures it doesn't spill out if there is padding/border */
+  box-sizing: border-box;
+
+  /* Optional: adds a little space above and below */
+  margin: 10px 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Keep all UI icons contained */
+svg {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Apply to all images globally */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block; /* Removes the tiny gap at the bottom of images */
+  object-fit: contain; /* Ensures images aren't distorted */
+}
