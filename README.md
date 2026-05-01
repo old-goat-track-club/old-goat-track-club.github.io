@@ -54,3 +54,8 @@ This is an option
 ### Python one-liner
 
 python3 -m http.server 8001
+To develop, clone repo.
+Then from repo root run `npm install`.
+For local dev build `npm run dev`.
+
+To lint, run `npm run format`
