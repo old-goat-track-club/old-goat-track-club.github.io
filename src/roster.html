@@ -39,17 +39,34 @@
     </nav>
 
     <main>
-      <h1 class="section-title">Team Roster</h1>
-      Want to update your photo? Send us a message!
-      <a href="contact.html">Contact Us</a>
-      <h2 class="section-subtitle">Men's Team</h2>
+      <h1 class="section-title" id="top">Team Roster</h1>
+
+      <!-- Jump Links (Table of Contents) -->
+      <p>
+        Jump to:
+        <a href="#men">Men's Team</a> |
+        <a href="#women">Women's Team</a>
+      </p>
+
+      <p>
+        Want to update your photo? Send us a message!
+        <a href="contact.html">Contact Us</a>
+      </p>
+
+      <h2 class="section-subtitle" id="men">Men's Team</h2>
       <div class="roster-grid" id="rosterGrid-men"></div>
-      <h2 class="section-subtitle">Women's Team</h2>
+
+      <div class="grey-bar"></div>
+
+      <h2 class="section-subtitle" id="women">
+        Women's Team <a href="#top">(Back to Top ↑ )</a>
+      </h2>
+      <!-- Back to Top Link -->
       <div class="roster-grid" id="rosterGrid-women"></div>
     </main>
 
     <footer>
-      <p>&copy; 2025 Old Goat Track Club</p>
+      <p>&copy; [2024 - Present] Old Goat Track Club</p>
       <div class="social-links">
         <a
           href="https://instagram.com/the_ogtc"
@@ -86,7 +103,8 @@
         data.forEach((athlete) => {
           if (athlete.length != 8) {
             // Skip rows w/ incorrect number of columns
-            console.log("SKIPPING: ", athlete);
+            console.log("SKIPPING due to row count: ", athlete);
+            console.log("delta: ", athlete.length - 8);
             return;
           }
 
@@ -99,7 +117,7 @@
           // Front of card
           let photo_src = `assets/roster-photos/${team}/${athlete[FRONT_PHOTO_IDX]}`;
           if (athlete[FRONT_PHOTO_IDX] === "") {
-            photo_src = "assets/roster-photos/default.svg";
+            photo_src = "assets/roster-photos/goat-head.png";
           }
           const front = document.createElement("div");
           front.className = "athlete-card-front";
