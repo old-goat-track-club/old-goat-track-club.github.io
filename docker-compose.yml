@@ -1,0 +1,17 @@
+services:
+  ogtc-dev:
+    container_name: ogtc-dev
+    image: node:22
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/tmp/ogtc
+    working_dir: /tmp/ogtc
+    command: bash -c "npm ci && npm run format && npm run dev"
+  ogtc-watch:
+    container_name: ogtc-watch
+    image: node:22
+    volumes:
+      - ./:/tmp/ogtc
+    working_dir: /tmp/ogtc
+    command: bash -c "npm ci && npm run format-watch"

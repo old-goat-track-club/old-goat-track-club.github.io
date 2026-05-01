@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Old Goat Track Club - Roster</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="assets/favicon.ico" />
+  </head>
+
+  <body>
+    <header>
+      <img
+        src="assets/full-text-logo.svg"
+        alt="Old Goat Track Club"
+        class="header-logo"
+      />
+    </header>
+
+    <nav>
+      <ul>
+        <li>
+          <a href="../index.html" class="nav-logo-link"
+            ><img
+              src="assets/logo-only-blue-on-white.svg"
+              alt="Home"
+              class="nav-logo"
+          /></a>
+        </li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="results.html">Results</a></li>
+        <li><a href="roster.html">Roster</a></li>
+        <li><a href="records.html">Records</a></li>
+        <li><a href="meet.html">XC Race</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <h1 class="section-title" id="top">Team Roster</h1>
+
+      <!-- Jump Links (Table of Contents) -->
+      <p>
+        Jump to:
+        <a href="#men">Men's Team</a> |
+        <a href="#women">Women's Team</a>
+      </p>
+
+      <p>
+        Want to update your roster card? Send us a message!
+        <a href="contact.html">Contact Us</a>
+      </p>
+
+      <h2 class="section-subtitle" id="men">Men's Team</h2>
+      <div class="roster-grid" id="rosterGrid-men"></div>
+
+      <div class="grey-bar"></div>
+
+      <h2 class="section-subtitle" id="women">
+        Women's Team <a href="#top">(Back to Top ↑ )</a>
+      </h2>
+      <!-- Back to Top Link -->
+      <div class="roster-grid" id="rosterGrid-women"></div>
+    </main>
+
+    <footer>
+      <p>&copy; [2024 - Present] Old Goat Track Club</p>
+      <div class="social-links">
+        <a
+          href="https://instagram.com/the_ogtc"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+            />
+          </svg>
+          <span>Follow us</span>
+        </a>
+      </div>
+    </footer>
+
+    <script type="module" src="js/loadCsv.js"></script>
+    <script type="module">
+      import { loadCsv } from "./js/loadCsv.js";
+
+      const NAME_IDX = 0;
+      const FRONT_PHOTO_IDX = 1;
+      const HOMETOWN_IDX = 2;
+      const COLLEGE_IDX = 3;
+      const EVENTS_IDX = 4;
+      const NICKNAME_IDX = 5;
+      const PRS_IDX = 6;
+      const QUOTE_IDX = 7;
+
+      function createRosterGrid(data, team) {
+        const grid = document.getElementById(`rosterGrid-${team}`);
+        grid.innerHTML = "";
+
+        data.forEach((athlete) => {
+          if (athlete.length != 8) {
+            // Skip rows w/ incorrect number of columns
+            console.log("SKIPPING due to row count: ", athlete);
+            console.log("delta: ", athlete.length - 8);
+            return;
+          }
+
+          const card = document.createElement("div");
+          card.className = "athlete-card";
+
+          const inner = document.createElement("div");
+          inner.className = "athlete-card-inner";
+
+          // Front of card
+          let photo_src = `assets/roster-photos/${team}/${athlete[FRONT_PHOTO_IDX]}`;
+          if (athlete[FRONT_PHOTO_IDX] === "") {
+            photo_src = "assets/roster-photos/goat-head.png";
+          }
+          const front = document.createElement("div");
+          front.className = "athlete-card-front";
+          front.innerHTML = `
+          <img src="${photo_src}" alt="${athlete[NAME_IDX]} front" class="athlete-photo">
+          <div class="athlete-info">
+            <h3>${athlete[NAME_IDX]}</h3>
+            <p>${athlete[NICKNAME_IDX]}</p>
+          </div>
+          <div class="flip-indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(0,0,0,0.5)">
+              <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+            </svg>
+          </div>
+        `;
+
+          // Back of card
+          const back = document.createElement("div");
+          back.className = "athlete-card-back";
+          back.innerHTML = `
+          <div class="athlete-details">
+            <p><strong>Hometown:</strong> ${athlete[HOMETOWN_IDX]}</p>
+            <p><strong>College:</strong> ${athlete[COLLEGE_IDX]}</p>
+            <p><strong>Events:</strong> ${athlete[EVENTS_IDX]}</p>
+            <p><strong>PRs:</strong> ${athlete[PRS_IDX]}</p>
+            <p><strong>Quote:</strong> ${athlete[QUOTE_IDX]}</p>
+          </div>
+          <div class="flip-indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(0,0,0,0.5)">
+              <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+            </svg>
+          </div>
+        `;
+
+          inner.appendChild(front);
+          inner.appendChild(back);
+          card.appendChild(inner);
+          grid.appendChild(card);
+
+          // Add click handler for flip animation
+          card.addEventListener("click", () => {
+            card.classList.toggle("flipped");
+          });
+        });
+      }
+
+      async function loadRoster(team) {
+        const rosterData = await loadCsv(`data/${team}_roster.csv`);
+        const sortedData = [...rosterData.data].sort((a, b) =>
+          a[0].localeCompare(b[0]),
+        );
+        createRosterGrid(sortedData, team);
+      }
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        // Load initial roster (Men's team)
+        var women = loadRoster("women");
+        var men = loadRoster("men");
+        await women;
+        await men;
+      });
+    </script>
+  </body>
+</html>
