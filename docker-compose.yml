@@ -15,3 +15,13 @@ services:
       - ./:/tmp/ogtc
     working_dir: /tmp/ogtc
     command: bash -c "npm ci && npm run format-watch"
+  image-optimizer:
+    build:
+      context: .
+      dockerfile: ./image-optimizer/Dockerfile
+    image: image-optimizer
+    volumes:
+      - .:/repo
+    # This prevents the optimizer from starting automatically with 'docker-compose up'
+    profiles:
+      - tools
