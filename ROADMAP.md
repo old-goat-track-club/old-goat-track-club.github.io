@@ -3,9 +3,6 @@
 A place to list changes/improvements/integrations in conjunction with the issues tab
 
 ## Aesthetics
-
-Consistent colors - will probably go to a darker blue
-
 Fix home page image in to be transparent with white logo
 
 Maybe add some more to the white background
