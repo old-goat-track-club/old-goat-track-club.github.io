@@ -25,7 +25,7 @@ Docker is a prerequisite, please follow the [installation instructions](https://
 In VS Code, open a new Terminal and run the command:
 
 ```
-docker compose up
+docker compose up -d
 ```
 
 This will create 2 containers:
@@ -33,9 +33,14 @@ This will create 2 containers:
 - `ogtc-dev` is the main developer container
     - Go to `localhost:8000` in a web browser to see the site.
 - `ogtc-watch` is the format watcher container.
-    - 5 seconds after editing, auto-formats project files.
+    - Some time after editing, auto-formats project files.
+    - Can cause saving issues if your editor doesn't refresh the file before your next edit.
 
-To stop the containers, hit `Ctrl-C` on the keyboard to quit.
+To stop the containers, run the command
+
+```
+docker compose down
+```
 
 ### NPM method
 
@@ -58,14 +63,16 @@ To develop, clone repo.
 Then from repo root run `npm install`.
 For local dev build `npm run dev`.
 
-## Image Optimizer
+## Image Optimizer Tool
 
-Make sure your git state is clean in case you need to revert. The script will overwrite the existing image files.
+Make sure your git state is clean, just in case you need to revert. The script will overwrite all existing image files.
 
-To prep the script, run this command:
+To build the script, run this command:
 
 `docker compose build image-optimizer`
 
-To activate the script and overwrite files, run this command:
+To activate the script in overwrite mode, run this command:
 
-`docker compose --rm image-optimizer` 
+`docker compose run --rm image-optimizer`
+
+It does not resize images (yet), only compresses.
