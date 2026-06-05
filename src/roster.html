@@ -32,6 +32,8 @@
         <a href="#women">Women's Team</a>
       </p>
 
+      <div class="grey-bar"></div>
+
       <p>
         Want to update your roster card? Send us a message!
         <a href="contact.html">Contact Us</a>
@@ -67,9 +69,8 @@
       </div>
     </footer>
 
-    <script type="module" src="js/loadCsv.js"></script>
     <script type="module">
-      import { loadCsv } from "./js/loadCsv.js";
+      import { loadSheet, createRosterTable } from "./js/loadSheets.js";
 
       const NAME_IDX = 0;
       const FRONT_PHOTO_IDX = 1;
@@ -149,7 +150,7 @@
       }
 
       async function loadRoster(team) {
-        const rosterData = await loadCsv(`data/${team}_roster.csv`);
+        const rosterData = await loadSheet(`${team}_roster`);
         const sortedData = [...rosterData.data].sort((a, b) =>
           a[0].localeCompare(b[0]),
         );
@@ -157,7 +158,6 @@
       }
 
       document.addEventListener("DOMContentLoaded", async () => {
-        // Load initial roster (Men's team)
         var women = loadRoster("women");
         var men = loadRoster("men");
         await women;
