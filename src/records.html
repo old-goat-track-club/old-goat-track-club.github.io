@@ -6,6 +6,7 @@
     <title>Old Goat Track Club - Records</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" href="assets/favicon.ico" />
+    <script src="libraries/htmx-2.0.10.min.js"></script>
   </head>
 
   <body>
@@ -17,33 +18,52 @@
       />
     </header>
 
-    <nav>
-      <ul>
-        <li>
-          <a href="../index.html" class="nav-logo-link"
-            ><img
-              src="assets/logo-only-blue-on-white.svg"
-              alt="Home"
-              class="nav-logo"
-          /></a>
-        </li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="news.html">News</a></li>
-        <li><a href="schedule.html">Schedule</a></li>
-        <li><a href="results.html">Results</a></li>
-        <li><a href="roster.html">Roster</a></li>
-        <li><a href="records.html">Records</a></li>
-        <li><a href="meet.html">XC Race</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+    <nav hx-get="htmx-components/nav.html" hx-trigger="load" hx-target="this">
+      <p style="padding: 10px; color: gray"></p>
     </nav>
 
     <main>
       <h1 class="section-title">Club Records</h1>
 
+      Jump to:
+      <ul>
+        <li><a href="#records-xc">Cross Country</a><br /></li>
+        <li>
+          <a href="#records-road_trail">Road and Trail</a>
+        </li>
+        <li>
+          <a href="#records-outdoor">Outdoor Track</a>
+        </li>
+        <li>
+          <a href="#records-indoor">Indoor Track</a>
+        </li>
+      </ul>
+      <div class="grey-bar"></div>
+
+      See a record you beat? Send us a message!
+      <a href="contact.html">Contact Us</a>
+      <br />
+
+      Must have raced in OGTC gear.
+
       <section class="records-container">
-        <h2 class="section-title">Cross Country Records</h2>
-        <table id="recordsTableXC" class="schedule-table"></table>
+        <h2 class="section-title">Cross Country</h2>
+        <table id="records-xc" class="schedule-table"></table>
+      </section>
+
+      <section class="records-container">
+        <h2 class="section-title">Road and Trail</h2>
+        <table id="records-road_trail" class="schedule-table"></table>
+      </section>
+
+      <section class="records-container">
+        <h2 class="section-title">Outdoor Track</h2>
+        <table id="records-outdoor" class="schedule-table"></table>
+      </section>
+
+      <section class="records-container">
+        <h2 class="section-title">Indoor Track Indoor</h2>
+        <table id="records-indoor" class="schedule-table"></table>
       </section>
     </main>
 
@@ -65,25 +85,27 @@
       </div>
     </footer>
 
-    <script type="module" src="js/loadCsv.js"></script>
     <script type="module">
-      import { loadCsv, createRecordsTable } from "./js/loadCsv.js";
-      document.addEventListener("DOMContentLoaded", async () => {
-        const recordsData = await loadCsv("data/club_records.csv");
+      import { loadSheet, createRecordsTable } from "./js/loadSheets.js";
+
+      async function loadRecordTable(variant) {
+        const recordsData = await loadSheet(`records-${variant}`);
+
+        console.log(`loading table: records-${variant}`);
         createRecordsTable(
-          "recordsTable",
+          `records-${variant}`,
           recordsData.headers,
           recordsData.data,
         );
+      }
 
-        const recordsDataXC = await loadCsv("data/club_records_xc.csv");
-        createRecordsTable(
-          "recordsTableXC",
-          recordsDataXC.headers,
-          recordsDataXC.data,
-        );
+      document.addEventListener("DOMContentLoaded", async () => {
+        const table_variants = ["xc", "road_trail", "outdoor", "indoor"];
+
+        table_variants.forEach((variant) => loadRecordTable(variant));
       });
     </script>
+
     <script async data-id="101492619" src="//static.getclicky.com/js"></script>
   </body>
 </html>

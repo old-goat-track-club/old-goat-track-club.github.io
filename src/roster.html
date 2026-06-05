@@ -6,6 +6,7 @@
     <title>Old Goat Track Club - Roster</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" href="assets/favicon.ico" />
+    <script src="libraries/htmx-2.0.10.min.js"></script>
   </head>
 
   <body>
@@ -17,25 +18,8 @@
       />
     </header>
 
-    <nav>
-      <ul>
-        <li>
-          <a href="../index.html" class="nav-logo-link"
-            ><img
-              src="assets/logo-only-blue-on-white.svg"
-              alt="Home"
-              class="nav-logo"
-          /></a>
-        </li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="news.html">News</a></li>
-        <li><a href="schedule.html">Schedule</a></li>
-        <li><a href="results.html">Results</a></li>
-        <li><a href="roster.html">Roster</a></li>
-        <li><a href="records.html">Records</a></li>
-        <li><a href="meet.html">XC Race</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+    <nav hx-get="htmx-components/nav.html" hx-trigger="load" hx-target="this">
+      <p style="padding: 10px; color: gray"></p>
     </nav>
 
     <main>
@@ -47,6 +31,8 @@
         <a href="#men">Men's Team</a> |
         <a href="#women">Women's Team</a>
       </p>
+
+      <div class="grey-bar"></div>
 
       <p>
         Want to update your roster card? Send us a message!
@@ -83,9 +69,8 @@
       </div>
     </footer>
 
-    <script type="module" src="js/loadCsv.js"></script>
     <script type="module">
-      import { loadCsv } from "./js/loadCsv.js";
+      import { loadSheet, createRosterTable } from "./js/loadSheets.js";
 
       const NAME_IDX = 0;
       const FRONT_PHOTO_IDX = 1;
@@ -165,7 +150,7 @@
       }
 
       async function loadRoster(team) {
-        const rosterData = await loadCsv(`data/${team}_roster.csv`);
+        const rosterData = await loadSheet(`${team}_roster`);
         const sortedData = [...rosterData.data].sort((a, b) =>
           a[0].localeCompare(b[0]),
         );
@@ -173,7 +158,6 @@
       }
 
       document.addEventListener("DOMContentLoaded", async () => {
-        // Load initial roster (Men's team)
         var women = loadRoster("women");
         var men = loadRoster("men");
         await women;
