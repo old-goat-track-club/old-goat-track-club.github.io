@@ -32,7 +32,20 @@ services:
     # This prevents the optimizer from starting automatically with 'docker-compose up'
     profiles:
       - tools
+  roster-images:
+    image: node:22
+    volumes:
+      - ./:/repo
+      # Own install so this tool never races the dev server over node_modules.
+      - roster-images-node_modules:/repo/node_modules
+    working_dir: /repo
+    # An entrypoint, not a command, so `docker compose run ... --strategy x`
+    # appends its arguments to the script instead of being swallowed.
+    entrypoint: ["sh", "scripts/roster-images.sh"]
+    profiles:
+      - tools
 
 volumes:
   ogtc-dev-node_modules:
   ogtc-watch-node_modules:
+  roster-images-node_modules:
