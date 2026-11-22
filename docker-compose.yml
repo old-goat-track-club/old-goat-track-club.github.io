@@ -6,6 +6,10 @@ services:
       - "8000:8000"
     volumes:
       - ./:/tmp/ogtc
+      # Keep the container install off the host tree. The mount above would
+      # otherwise let `npm ci` overwrite host node_modules with Linux binaries,
+      # breaking the darwin/arm64 install used by `npm run dev`.
+      - ogtc-dev-node_modules:/tmp/ogtc/node_modules
     working_dir: /tmp/ogtc
     command: bash -c "npm ci && npm run format && npm run dev"
   ogtc-watch:
@@ -13,6 +17,9 @@ services:
     image: node:22
     volumes:
       - ./:/tmp/ogtc
+      # Separate volume from ogtc-dev: both services run `npm ci` on start, so
+      # sharing one would race on the same files.
+      - ogtc-watch-node_modules:/tmp/ogtc/node_modules
     working_dir: /tmp/ogtc
     command: bash -c "npm ci && npm run format-watch"
   image-optimizer:
@@ -25,3 +32,7 @@ services:
     # This prevents the optimizer from starting automatically with 'docker-compose up'
     profiles:
       - tools
+
+volumes:
+  ogtc-dev-node_modules:
+  ogtc-watch-node_modules:
