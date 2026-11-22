@@ -107,7 +107,7 @@
           const front = document.createElement("div");
           front.className = "athlete-card-front";
           front.innerHTML = `
-          <img src="${photo_src}" alt="${athlete[NAME_IDX]} front" class="athlete-photo">
+          <img src="${photo_src}" alt="${athlete[NAME_IDX]} front" class="athlete-photo" loading="lazy" decoding="async">
           <div class="athlete-info">
             <h3>${athlete[NAME_IDX]}</h3>
             <p>${athlete[NICKNAME_IDX]}</p>
